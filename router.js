@@ -100,13 +100,13 @@ function loadPage(page) {
                   <li>Go beyond WCAG compliance!</li
                   <li>Inspirational speakers.</li>
                 </ul>
-                <p><a href='#'>Learn more</a></p>
+                <p><a href='https://www.elevenways.be/en/services'>Learn more</a></p>
                 </article>
                 <article class="column">
                 <h3>Testimonials</h3>
                 <p>Invite a speaker with disabilities to share their unique journey. This captivating addition to your upcoming event will 
                 offer insights that resonate,  inspire, educate, and enrich your team’s understanding of inclusion.</p>
-                <p><a href='#'>Learn more</a></p>
+                <p><a href='https://dictionary.cambridge.org/us/dictionary/english/testimonial'>Learn more</a></p>
                 </article>
               </div>
             </div>
