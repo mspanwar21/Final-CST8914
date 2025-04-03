@@ -89,7 +89,7 @@ function loadPage(page) {
                 step into the shoes of individuals with disabilities and navigate the world from their 
                 perspective.</p>
                 Learn more goes to </p>
-                <p><a href='#'>Learn more</a></p>
+                <p><a href='https://www.google.com/search/howsearchworks/our-approach/'>Learn more</a></p>
                 </article>
 
                 <article class="column">
