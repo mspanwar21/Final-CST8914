@@ -139,6 +139,7 @@ function loadPage(page) {
         // document.title = "Services";
         //document.title.focus();
         returnHTML = `
+                            <img src="images/scheduleacall.jpg"  alt="EmpowerAbilityLab logo"/>
                             <h2>Services content architecture</h2>
                             <p>Dedicated space or programs designed to cultivate empathy and understanding among individuals 
                                 towards the challenges faced by people with disabilities in using technology and interacting with 
