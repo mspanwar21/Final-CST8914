@@ -1,146 +1,175 @@
+function handleFormSubmit(event) {
+    event.preventDefault();
 
+    const messageDiv = document.getElementById('formMessage');
+    messageDiv.innerHTML = '';
+    messageDiv.className = '';
 
-function showLightbox(){
-  document.getElementById("lightboxmodal").style.display = "block";
-  //document.getElementById("dialoglabel").focus();
-  document.getElementById("dialoglabel").tabIndex = "-1";
-  //document.getElementById("dialoglabel").trigger('focus');
-  document.getElementById("dialoglabel").setAttribute("aria-hidden","false");
+    const businessName = document.getElementById('businessName').value.trim();
+    const email = document.getElementById('email').value.trim();
+    let errors = [];
 
-}
+    if (email === '') {
+        errors.push('Email is required.');
+    } else {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
+            errors.push('Please enter a valid email address.');
+        }
+    }
 
-
-// Close the Modal
-function closeModal() {
-  document.getElementById("lightboxmodal").style.display = "none";
-}
-
-function toggleSwitch(thingy){
-  if(thingy.checked){
-    console.log("Switch is ON");
-  } else {
-    console.log("Switch is OFF");
-  }
-}
-function findLableForControl(el) {
-  var idVal = el.id;
-  labels = document.getElementsByTagName('label');
-  for( var i = 0; i < labels.length; i++ ) {
-     if (labels[i].htmlFor == idVal)
-          return labels[i];
-  }
-}
-function removeErrorMessages(){
-    //alert("validating form");
-    let errorElements = document.getElementsByClassName('errorMessage');   
-
-    for(let i=0; i < errorElements.length; i++){
-      errorElements[i].ariaHidden = "true";
-      errorElements[i].style.display = "none";
+    if (errors.length > 0) {
+        const errorHtml = errors.map(error => `<p style="color: red;">${error}</p>`).join('');
+        messageDiv.innerHTML = errorHtml;
+        messageDiv.classList.add('error');
+    } else {
+        messageDiv.innerHTML = '<p style="color: green;">Thank you for scheduling a call. We will get back to you soon!</p>';
+        messageDiv.classList.add('success');
+        event.target.reset();
+        document.getElementById('extraField').style.display = 'none';
+        document.getElementById('receiveEmailCheckBoxImage').src = 'images/off.png';
     }
 }
-function validateForm(){
-  
-  //alert("validateForm called");
-    removeErrorMessages();
-    let returnValue = true;
 
-    //validateFieldset("talkAboutGroup");
+function openModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.style.display = 'block';
+        modal.setAttribute('aria-hidden', 'false');
+        modal.setAttribute('aria-modal', 'true');
+        modal.setAttribute('role', 'dialog');
 
-    const myform = document.getElementById("scheduleForm");
+        const focusableElements = modal.querySelectorAll('a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex="0"], [contenteditable]');
+        if (focusableElements.length) {
+            focusableElements[0].focus();
+        }
+    }
+}
+
+function closeModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.style.display = 'none';
+        modal.setAttribute('aria-hidden', 'true');
+        modal.removeAttribute('aria-modal');
+        modal.removeAttribute('role');
+
+        const triggerButton = document.querySelector(`[data-modal-trigger="${modalId}"]`);
+        if (triggerButton) {
+            triggerButton.focus();
+        }
+    }
+}
+
+window.addEventListener('click', function (event) {
+    const modals = document.getElementsByClassName('modal');
+    for (let i = 0; i < modals.length; i++) {
+        if (event.target === modals[i]) {
+            closeModal(modals[i].id);
+        }
+    }
+});
+
+document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') {
+        const modals = document.getElementsByClassName('modal');
+        for (let i = 0; i < modals.length; i++) {
+            if (modals[i].style.display === 'block') {
+                closeModal(modals[i].id);
+            }
+        }
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    const navLinks = document.querySelectorAll('nav a');
     
-    let errorList = [];
-
-    [...myform.elements].forEach(item => {
-
-      if(item.hasAttribute('required')){
-        if(item.tagName.toLowerCase() == "input" && item.value.trim() == ""){ 
-          // const givenLabel = findLableForControl(item);
-          returnValue = false;
-          let errorid=item.id + 'error';
-          let message = document.getElementById(errorid);
-          if(item.id=='busname'){
-            message.innerHTML = "Please enter a name";
-          } else if(item.id=='phone'){
-            message.innerHTML = "Please enter a 10 digit phone number";
-          } else {
-            message.innerHTML = "Please make a valid email address";
-          }
-          
-          message.style.display="block";
-          message.ariaHidden = "false";
-          errorList.push(item);
-      }
-    }
+    navLinks.forEach(link => {
+        link.addEventListener('keydown', (event) => {
+            if (event.key === ' ') {
+                event.preventDefault();
+                link.click();
+            }
+        });
     });
-    if(!returnValue) { 
-      errorList[0].tabIndex = "-1"
-      errorList[0].focus();
-      const firstlabel = findLableForControl(errorList[0]);
-      firstlabel.ariaLive = "assertive";
-      return false;
-    } else { 
-      document.getElementById('thankyou').style.display = block;
-      return true;
-    
+});
+
+document.getElementById('inviteCheckbox').addEventListener('change', function () {
+    var additionalOption = document.getElementById('extraField');
+    if (this.checked) {
+        additionalOption.style.display = 'block';
+    } else {
+        additionalOption.style.display = 'none';
+    }
+});
+
+function handleHashChange() {
+    const hash = window.location.hash;
+    if (!hash) {
+        window.location.hash = '#home';
+        return;
+    }
+    document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+    document.querySelectorAll('section').forEach(section => section.classList.remove('active'));
+
+    const activeLink = document.querySelector(`.nav-link[href="${hash}"]`);
+    const activeSection = document.querySelector(hash);
+    if (activeLink && activeSection) {
+        activeLink.classList.add('active');
+        activeSection.classList.add('active');
     }
 
+    let title;
+    switch (hash) {
+        case '#home':
+            title = 'Empower Ability Labs - Home';
+            break;
+        case '#services':
+            title = 'Empower Ability Labs - Services';
+            break;
+        case '#schedule':
+            title = 'Empower Ability Labs - Schedule a Call';
+            break;
+        default:
+            title = 'Empower Ability Labs';
+    }
+    document.title = title;
+
+    if (activeSection) {
+        const heading = activeSection.querySelector('h1');
+        if (heading) {
+            heading.focus();
+        }
+    }
 }
 
-function validateFieldset(id){ 
-    let searchString = '#' + id + ' input';
-    let fieldstuff = document.forms['scheduleForm'].querySelectorAll(searchString);
-    let grouprequired = false;
-    let hasChecked = false;
-   
+window.addEventListener('hashchange', handleHashChange);
+window.addEventListener('load', handleHashChange);
 
-    for(let i=0; i < fieldstuff.length; i++){
-      console.log(fieldstuff[i].hasAttribute('required'));
-      console.log(fieldstuff[i].hasAttribute('required'));
-      console.log(fieldstuff[i].style.display);
-      if(fieldstuff[i].hasAttribute('required') && ! fieldstuff[i].style.display == none ){
-        console.log("grouprequired set to true");
-        console.log(fieldstuff[i]);
-         grouprequired = true;
+document.addEventListener('DOMContentLoaded', function () {
+    const customCheckbox = document.getElementById('customCheckbox');
+    const customCheckboxImage = document.querySelector('.custom-checkbox-image');
+  
+    function updateCheckboxImage() {
+      const isChecked = customCheckbox.checked;
+      customCheckboxImage.setAttribute('aria-checked', isChecked);
+      customCheckbox.setAttribute('aria-checked', isChecked);
+    }
+  
+    customCheckboxImage.addEventListener('click', () => {
+      customCheckbox.checked = !customCheckbox.checked;
+      customCheckbox.dispatchEvent(new Event('change'));
+    });
+  
+    customCheckboxImage.addEventListener('keydown', (event) => {
+      if (event.key === ' ' || event.key === 'Enter') {
+        event.preventDefault();
+        customCheckbox.checked = !customCheckbox.checked;
+        customCheckbox.dispatchEvent(new Event('change'));
       }
-      if(fieldstuff[i].checked == true){
-        console.log("true");
-        console.log(fieldstuff[i]);
-        hasChecked = true;
-      }
-    }
-
-    if(!grouprequired){
-      console.log(grouprequired);
-      return true;
-    }
-    if(!grouprequired && hasCheck){
-      console.log("got here 106");
-      return true;
-    }
-    alert("got here 107");
-    console.log(grouprequired);
-    console.log(hasCheck);
-    searchString = '#' + id + ' legend';
-    fieldstuff = document.forms['scheduleForm'].querySelectorAll(searchString);
-    // console.log(fieldstuff);
-    const errorMessage = document.createElement("div");
-    errorMessage.innerHTML= '<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>' + fieldstuff[0].innerHTML + " needs at least one choice";
-    errorMessage.classList.add("errorMessage");
-    fieldstuff[0].after(errorMessage);
-
-}    
-
-function togglePleaseTellUs(){
-  let showhidediv = document.getElementById("pleaseTellUs");
-  console.log(showhidediv)
-  if(document.getElementById("check_invite").checked == true){
-    showhidediv.hidden = false;
-  } else { 
-    showhidediv.hidden = true;
-  }
-}
-
-
-// knowledgeRunner()
-
+    });
+  
+    customCheckbox.addEventListener('change', updateCheckboxImage);
+  
+    updateCheckboxImage();
+  });
