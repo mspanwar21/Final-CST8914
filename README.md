@@ -91,7 +91,7 @@ Included in the Brightspace submission with the project URL and GitHub link.
 
 ---
 
-© 2025 Empower Ability Labs – Final Project for [Course Name Here]
+© 2025 Empower Ability Labs – Final Project for CST8914
 
 
 
