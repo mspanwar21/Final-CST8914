@@ -217,15 +217,11 @@
             <label for="eventDetails">Please tell us about your event:</label>
             <textarea class="form-control" id="eventDetails" rows="3"></textarea>
           </div>
-          <!-- Rounded switch -->
-         <div role="switch" aria-checked="false" tabindex="0">
-          <span class="label">Notifications</span>
-            <span class="switch">
-            <span></span>
-          </span>
-          <span class="on" aria-hidden="true">On</span>
-            <span class="off" aria-hidden="true">Off</span>
-          </div>
+          <div class="form-check switch-container">
+            <div class="custom-checkbox-container">
+              <input type="checkbox" id="customCheckbox" class="custom-checkbox" aria-checked="false" tabindex="-1">
+              <span class="custom-checkbox-image" tabindex="0" role="checkbox" aria-checked="false"></span>
+            </div>
             <label class="form-check-label" for="receiveEmailCheckBox">Receive emails about updates and servicesReceive
               emails about updates and services</label>
           </div>
