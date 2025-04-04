@@ -1,0 +1,207 @@
+/* CSS for Empower Ability Labs */
+
+/* Navigation Bar Styles */
+nav {
+    background-color: #cdcdcd;
+    padding: 1rem;
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+}
+
+nav a {
+    color: #353535;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover,
+nav a:focus {
+    text-decoration: underline;
+    outline: 2px solid #ffdd57;
+    color: blue;
+}
+
+
+/* Main Jumbotron */
+.jumbotron {
+    background-color: #f8f9fa;
+    padding: 2rem;
+    border-radius: 8px;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+h1 {
+    color: #2a3f54;
+    font-size: 2.5rem;
+}
+
+p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #4a4a4a;
+}
+
+/* Services Section */
+#services h2 {
+    margin-top: 2rem;
+    color: #333;
+}
+
+a {
+    color: #940091;
+}
+
+section {
+    display: none;
+}
+
+section.active {
+    display: block;
+}
+
+/* Form and Modals */
+/*
+form {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+}
+    */
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: 2px solid black;
+    border-color: black;
+}
+
+.custom-checkbox-container {
+    display: flex;
+    align-items: center;
+}
+
+.custom-checkbox {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.custom-checkbox-image {
+    display: inline-block;
+    width: 36px;
+    height: 18px;
+    background-image: url('images/off.png');
+    background-size: cover;
+    cursor: pointer;
+    outline: none;
+}
+
+.custom-checkbox-image[aria-checked="true"] {
+    background-image: url('images/on.png');
+}
+
+.custom-checkbox-image:focus {
+    outline: 2px solid black;
+}
+
+.switch-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+
+.topics {
+    border: 2px solid #7d7d7d;
+    padding: 10px;
+}
+
+/*
+.btn {
+    background-color: #c6c6c6;
+    color: rgb(0, 0, 0);
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+    */
+.btn:hover {
+    background-color: #e1e1e1;
+    color: rgb(0, 0, 0);
+}
+
+.btn:focus {
+    outline: 3px solid black;
+    border-color: black;
+}
+
+.form-control:focus {
+    outline: 2px solid black;
+    border-color: black;
+    box-shadow: 0 0 5px rgba(52, 52, 52, 0.5);
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    border-radius: 8px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
