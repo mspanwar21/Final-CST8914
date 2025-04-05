@@ -1,207 +1,291 @@
 /* CSS for Empower Ability Labs */
 
-/* Navigation Bar Styles */
-nav {
-    background-color: #cdcdcd;
-    padding: 1rem;
+.wb-inv {
+    clip: rect(1px,1px,1px,1px);
+    height: 1px;
+    margin: 0;
+    overflow: hidden;
+    position: absolute;
+    width: 1px;
 }
 
-nav ul {
-    list-style-type: none;
-    display: flex;
-    gap: 20px;
-    padding: 0;
+*[tabindex]:focus {
+    outline: 2px blue solid !important;
 }
 
-nav a {
-    color: #353535;
-    text-decoration: none;
-    font-weight: bold;
+a.navbar-brand img {
+    height: 2em;
+    width: auto;
+}
+.navbar-custom {
+    background-color: #9FA6B4 !important; 
 }
 
-nav a:hover,
-nav a:focus {
-    text-decoration: underline;
-    outline: 2px solid #ffdd57;
-    color: blue;
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 0, 0, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
 
-
-/* Main Jumbotron */
-.jumbotron {
-    background-color: #f8f9fa;
-    padding: 2rem;
-    border-radius: 8px;
+/* FOR PHONE SCREENS */
+/* change display of 'flex' to 'block' phone screens */
+div.show ul.nav {
+    display: block;
 }
-
-.container {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 1rem;
+header.navbar:has(#navbarSupportedContent.show) {
+    align-items: start;
 }
-
-h1 {
-    color: #2a3f54;
-    font-size: 2.5rem;
-}
-
-p {
-    font-size: 1rem;
-    line-height: 1.6;
-    color: #4a4a4a;
-}
-
-/* Services Section */
-#services h2 {
-    margin-top: 2rem;
-    color: #333;
+header.navbar > nav:has(#navbarSupportedContent.show) {
+    text-align: right;
 }
 
 a {
-    color: #940091;
+    color: navy; /* darker blue for link */
 }
 
-section {
-    display: none;
+a.nav-link {
+    color: navy;
 }
 
-section.active {
-    display: block;
-}
+/* Contact */
 
-/* Form and Modals */
-
-form {
-    max-width: 600px;
-    margin: 2rem auto;
-    padding: 1rem;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: bold;
-}
-
-input, select, textarea {
-    width: 100%;
-    padding: 0.5rem;
+.alert-region {
     margin-bottom: 1rem;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-}
-    
-
-input:focus,
-select:focus,
-textarea:focus {
-    outline: 2px solid black;
-    border-color: black;
 }
 
-.custom-checkbox-container {
-    display: flex;
-    align-items: center;
+.alert {
+    padding: 1rem;
+    border-radius: 0.25rem;
 }
 
-.custom-checkbox {
-    position: absolute;
-    opacity: 0;
-    pointer-events: none;
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
 }
 
-.custom-checkbox-image {
-    display: inline-block;
-    width: 36px;
-    height: 18px;
-    background-image: url('images/off.png');
-    background-size: cover;
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+/* Alert Region Focus Style */
+.alert-region:focus {
+    outline: 2px solid #0056b3; /* Blue outline to indicate focus */
+    outline-offset: 2px;
+}
+
+/* Close Button Styles */
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 1.25rem;
+    color: #000;
     cursor: pointer;
+    line-height: 1;
+    position: absolute;
+    top: 0.5rem;
+    right: 0.75rem;
+}
+
+/* Adjust close button color for different alert types */
+.alert-danger .close-btn {
+    color: #721c24; /* Dark red */
+}
+
+.alert-success .close-btn {
+    color: #155724; /* Dark green */
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: #000;
+    text-decoration: none;
+    opacity: 0.75;
+}
+
+/* Ensure the alert region has relative positioning */
+.alert-region {
+    position: relative;
+    padding-right: 2.5rem; /* Add space for the close button */
+}
+
+/* Toggle Switch Styles */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+.toggle-switch input[type="checkbox"] {
+    opacity: 0;
+    width: 50px;
+    height: 24px;
+    margin: 0;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+.toggle-switch .slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50px;
+    height: 24px;
+    background-color: #ccc;
+    border-radius: 34px;
+    transition: background-color 0.3s;
+}
+
+.toggle-switch .slider::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.3s;
+}
+
+.toggle-switch input[type="checkbox"]:checked + .slider {
+    background-color: #28a745; /* Green when checked */
+}
+
+.toggle-switch input[type="checkbox"]:checked + .slider::before {
+    transform: translateX(26px); /* Move the knob */
+}
+
+/* Focus styles */
+.toggle-switch input[type="checkbox"]:focus + .slider {
+    outline: 2px solid #28a745; /* Green outline */
+    outline-offset: 2px;
+    box-shadow: 0 0 0 2px rgba(40, 167, 69, 0.25); /* Focus ring */
+}
+
+/* Ensure proper alignment with the text label */
+.form-group label[for="email-updates"] {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+/* Focus indicator for the toggle switch */
+.toggle-switch input[type="checkbox"]:focus + label {
+    outline: 2px solid #28a745; /* Green outline */
+    outline-offset: 2px; /* Space between the outline and element */
+    box-shadow: 0 0 5px 2px rgba(40, 167, 69, 0.5); /* Green glow effect */
+}
+
+/*Emoji Image Style for Services*/
+#thumbsEmoji{
+    float: right;
+    width: 100px;
+}
+
+/*Emoji Image Style for schedule call*/
+#callerEmoji{
+    float: right;
+    width: 100px;
+}
+
+/* MODAL STYLES */
+
+/* Modal Overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999; /* Increased z-index to be above all other elements */
+}
+
+/* Modal Dialog */
+.modal-dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%; /* Responsive width */
+    max-width: 500px; /* Maximum width */
+    max-height: 90vh; /* Constrain modal height to viewport */
+    background: white;
+    border-radius: 16px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    z-index: 10000; /* Higher z-index to appear above the overlay and navbar */
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box; /* Include padding and borders in size */
+    overflow: hidden; /* Hide overflow to manage scrolling within */
+}
+
+
+/* Modal Content */
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Ensure the content fills the modal */
+    overflow: hidden; /* Hide overflow to manage scrolling within modal-body */
+}
+
+/* Modal Header */
+.modal-header {
+    background-color: #383a3c; /* Match the navbar color */
+    padding: 1rem;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    flex-shrink: 0; /* Prevent header from shrinking */
+}
+
+/* Modal Header Title */
+.modal-header h2 {
+    color: white; /* White text for the header */
+    font-size: 1.5rem;
+    margin: 0;
+    text-align: center;
+}
+
+/* Modal Body */
+.modal-body {
+    flex: 1 1 auto; /* Allow body to grow and shrink */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding: 1rem;
+}
+
+/* Modal Footer */
+.modal-footer {
+    padding: 1rem;
+    text-align: right;
+    flex-shrink: 0; /* Prevent footer from shrinking */
+}
+
+/* Close Button */
+.close-button {
+    padding: 12px 24px;
+    background-color: #383a3c;
+    color: #fff;
+    border: none;
+    border-radius: 5px; /* Rounded button */
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.close-button:hover,
+.close-button:focus {
+    background-color: #1b0d49;
     outline: none;
 }
 
-.custom-checkbox-image[aria-checked="true"] {
-    background-image: url('images/on.png');
-}
-
-.custom-checkbox-image:focus {
-    outline: 2px solid black;
-}
-
-.switch-container {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-
-.topics {
-    border: 2px solid #7d7d7d;
-    padding: 10px;
-}
-
-
-.btn {
-    background-color: #c6c6c6;
-    color: rgb(0, 0, 0);
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-    
-.btn:hover {
-    background-color: #e1e1e1;
-    color: rgb(0, 0, 0);
-}
-
-.btn:focus {
-    outline: 3px solid black;
-    border-color: black;
-}
-
-.form-control:focus {
-    outline: 2px solid black;
-    border-color: black;
-    box-shadow: 0 0 5px rgba(52, 52, 52, 0.5);
-}
-
-/* Modal Styles */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
-}
-
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    border-radius: 8px;
-}
-
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
+.close-button:focus {
+    outline: 3px solid #005fcc; /* Thicker blue outline for focus */
+    outline-offset: 2px;
 }
