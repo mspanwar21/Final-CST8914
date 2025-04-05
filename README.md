@@ -70,8 +70,6 @@ All components were built **without Bootstrap JS** and follow **ARIA standards**
 - **Focus Management**: Managed focus shifts using JavaScript when navigating between sections.
 - **Component Accessibility**: Built ARIA-compliant components from scratch (modal, switch, etc.) without relying on Bootstrap JS.
 - **Form Validation**: Used custom JavaScript to provide real-time error handling with screen reader-friendly messages.
-- **Toggle Button Challenge**: Faced difficulty implementing an accessible toggle switch using standard JavaScript.  
-  👉 **Solution**: Instead of a traditional toggle, we used two images (on/off states) and created a custom JavaScript function that mimics toggle behavior. This workaround maintained both interactivity and accessibility.
 
 
 
