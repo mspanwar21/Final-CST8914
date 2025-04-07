@@ -54,16 +54,16 @@ One of the key features of this website is that it is **responsive** — meaning
 
 To achieve this, the following responsive design techniques were used:  
 
-### 5. **Web Form Accessibility**
-- Fully keyboard-navigable form.
-- Proper labeling and use of ARIA roles.
-- Client-side validation for required fields and input types.
-- Clear user notifications for errors and successful submission.
-
 ### ✅ Viewport Meta Tag
 Ensures proper scaling and layout on mobile browsers:
 html
 <meta name="viewport" content="width=device-width, initial-scale=1">  
+
+### 6. **Web Form Accessibility**
+- Fully keyboard-navigable form.
+- Proper labeling and use of ARIA roles.
+- Client-side validation for required fields and input types.
+- Clear user notifications for errors and successful submission.
 
 
 ---
